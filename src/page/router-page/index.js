@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { HashRouter, Route, Switch, Link, Redirect } from 'react-router-dom';
+import childPage from "./childPage";
 export default class index extends Component {
   render() {
     return (
@@ -17,12 +18,14 @@ export default class index extends Component {
   }
 }
 
-function Home() {
+function Home({ match }) {
   return (
     <>
-      <h1>我是标题</h1>
+      <h1>我是home路由组件</h1>
+      <Route path={match.url + "/child"} name="123" component={childPage}></Route>
       {/* 跳转路由 */}
-      <Link to="/">去ceshi</Link>
+      <Link to="/">跳转标签</Link>
+      <Index text={match}></Index>
       {/* Redirect一旦渲染  页面强制执行跳转 */}
       {/* <Redirect to="/"></Redirect> */}
     </>
@@ -30,6 +33,11 @@ function Home() {
 
 }
 
-function Index() {
-  return <h1>ceshi </h1>
+function Index(props) {
+  console.log(props)
+  return <h1>我是Index组件</h1>
 }
+
+
+// 路由组件的props默认是{history, location, match}三个参数
+// 非路由组件的props取决于父组件传入什么（也可以将路由参传入）
