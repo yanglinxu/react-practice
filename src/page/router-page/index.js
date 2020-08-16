@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, lazy, Suspense } from 'react'
 import { HashRouter, Route, Switch, Link, Redirect } from 'react-router-dom';
-import ChildPage from "./childPage";
+// import ChildPage from "./childPage";
+// 组件动态引入方式
+const ChildPage = lazy(() => import("./childPage"))
 export default class index extends Component {
   render() {
     return (
@@ -23,12 +25,18 @@ function Home({ match }) {
   return (
     <>
       <h1>我是home路由组件</h1>
-      {/* 当通过component渲染嵌套路由时 字路由只能接收路由参数 无法通过props方式传值*/}
-      <Route path={match.url + "/child"} component={ChildPage}></Route>
-      {/* 通过render渲染时 可以通过props指定传入的参数 */}
-      <Route path={match.url + "/child"} render={() =>
-        <ChildPage test='123'></ChildPage>
-      }></Route>
+      {/* 动态引入的标签必须被Suspense标签包裹 */}
+      <Suspense fallback={<div>hahah</div>}>
+
+        {/* 当通过component渲染嵌套路由时 字路由只能接收路由参数 无法通过props方式传值*/}
+        <Route path={match.url + "/child"} component={ChildPage}></Route>
+
+        {/* 通过render渲染时 可以通过props指定传入的参数 */}
+        <Route path={match.url + "/child"} render={() =>
+          <ChildPage test='123'></ChildPage>
+        }></Route>
+
+      </Suspense>
       {/* 跳转路由 */}
       <Link to="/">跳转标签</Link>
       {/* <Index text={match}></Index> */}
