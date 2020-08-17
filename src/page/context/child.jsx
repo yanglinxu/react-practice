@@ -3,6 +3,7 @@ import { testContext } from './context'
 
 export default class child extends Component {
   render() {
+    console.log(this.props)
     return (
       <div>
         我是中间组件
@@ -19,6 +20,7 @@ class Button extends Component {
   render() {
     return (
       // 1
+      // 当有多个context时  推荐使用第1种方法  嵌套
       // <testContext.Consumer>
       //   {value => <button>{value}</button>}
       // </testContext.Consumer>

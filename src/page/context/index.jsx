@@ -6,7 +6,7 @@ export default class index extends Component {
   render() {
     return (
       <testContext.Provider value="test">
-        <Child></Child>
+        <Child {...this.props}></Child>
       </testContext.Provider>
     )
   }
