@@ -4,16 +4,24 @@ import './App.css';
 import IndexPage from './page/router-page/index.js';
 import ContextPage from './page/context/index'
 
-import hocIndex from './page/hoc/index';
-import Comp from './page/hoc/comp'
-let HocComp = hocIndex(Comp);
+// import hocIndex from './page/hoc/index';
+// import Comp from './page/hoc/comp'
+// let HocComp = hocIndex(Comp);
+
+import Hooks from './page/hooks/hooks'
 function App() {
   return (
     <div>
+      {/* 路由组件的使用 */}
       {/* <IndexPage></IndexPage> */}
 
+      {/* context Api的使用 */}
       {/* <ContextPage name={'haha'} age={18}></ContextPage> */}
-      <HocComp title={'hoc练习'} level={2}></HocComp>
+
+      {/* hoc的使用 */}
+      {/* <HocComp title={'hoc练习'} level={2}></HocComp> */}
+
+      <Hooks></Hooks>
     </div>
 
   );

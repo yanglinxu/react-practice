@@ -1,0 +1,22 @@
+.draggable--bar {
+  padding: 10px;
+  transition: background-color 1s ease-out;
+}
+
+.draggable--bar.dragover .inner {
+  transition: height 0.3s ease;
+  margin: 10px 0;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.draggable {
+  padding: 20px 0;
+  background-color: pink;
+  transition: all 0.3s ease;
+}
+
+.draggable.dragging {
+  opacity: 0;
+  position: fixed;
+  width: 100%;
+}
